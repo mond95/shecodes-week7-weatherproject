@@ -6,9 +6,26 @@
     <title>SheCodes Weather App</title>
   </head>
   <body>
-    <h1>Welcome to the weather app</h1>
+    <header>
+      <form>
+        <input type="search" placeholder="Enter a city..." required />
+        <input type="submit" value="Search" />
+      </form>
+    </header>
+    <main>
+      <!-- putting the city info and the temp in two separate divs so can put them as 2 different sections and create a block around each of them -->
+      <div>
+        <h1>Paris</h1>
+        <p>
+          Tuesday 14:49, scattered clouds
+          <br />
+          Humidity: 66%, Wind: 3.13km/h
+        </p>
+      </div>
+      <div>🌤 12°c</div>
+    </main>
     <footer>
-      Coded by
+      This project was coded by
       <a href="https://github.com/mond95" target="_blank">Monica Diep</a>, code
       hosted on
       <a
