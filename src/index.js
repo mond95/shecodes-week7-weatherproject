@@ -1,15 +1,67 @@
 // FUNCTION WHICH RECEIVES THE RESPONSE FROM THE API CALL DONE IN THE BELOW FUNCTION AND THEN CONSOLE LOGS THE DATA FOR THE CITY SEARCHED FOR
 function refreshWeather(response) {
   // to see the whole object of the city's data
-  console.log(response.data);
+  //   console.log(response.data);
+
   // to see the current temperature
   //   console.log(response.data.temperature.current);
+
+  //   bringing in the DOM elements so we can alter the inner HTML of these later
   let temperatureElement = document.querySelector("#temperature");
   let temperature = response.data.temperature.current;
   let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#wind-speed");
+  let timeElement = document.querySelector("#time");
+  // can see the date looks strange - we have to parse it so google how to do this if forget - have to do new Date(VALUE) * 1000
+  let date = new Date(response.data.time * 1000);
 
+  // showing the city
   cityElement.innerHTML = response.data.city;
+
+  // getting the temperature
   temperatureElement.innerHTML = Math.round(temperature);
+
+  // getting the date/time
+  // if we use date.getDay() to get the day of the week, the problem is this will return a number from 0 - 6 i.e. '2' instead of 'Tuesday':
+  //   timeElement.innerHTML = `${date.getDay()} ${date.getDate()} ${date.getMonth()} ${date.getHours()}:${date.getMinutes()}`;
+  // to improve this need to create a new function which will format the date and it will receive a date
+  timeElement.innerHTML = formatDate(date);
+
+  //   getting the description
+  //   console.log(response.data.condition.description);
+  descriptionElement.innerHTML = response.data.condition.description;
+
+  // getting the humidity
+  // using the backticks so we can add the % symbol still
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+
+  // getting the windspeed
+  windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+}
+
+// FUNCTION TO FORMAT THE DATE
+function formatDate(date) {
+  let day = date.getDay();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  // also want to format it so if the time is less than 10 minutes then add a zero before it e.g. if it's 18:05 it would only show 18:5 so need to format this
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${days[day]} ${hours}:${minutes}`;
 }
 
 // FUNCTION TO UPDATE THE TEMPERATURE WITH AN API CALL BASED ON THE CITY THAT HAS BEEN SEARCHED

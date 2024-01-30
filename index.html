@@ -37,9 +37,11 @@
             <!-- removing 'Paris' from the h1 so that if we didn't search anything it wouldn't be there - later in js we have it set to london by default when you reload -->
             <h1 class="weather-app-city" id="city"></h1>
             <p class="weather-app-details">
-              Tuesday 14:49, scattered clouds
+              <span id="time"></span>,
+              <span id="description"></span>
               <br />
-              Humidity: <strong>66%</strong>, Wind: <strong>3.13km/h</strong>
+              Humidity: <strong id="humidity"></strong>, Wind:
+              <strong id="wind-speed"></strong>
             </p>
           </div>
           <!-- adding seperature divs to the temp icon, number and units so we can individually style those and wrapping that
