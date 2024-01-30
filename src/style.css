@@ -83,19 +83,20 @@ main {
 
 .weather-app-icon {
   /* the emoji is technically a font so can change it with font-size */
-  font-size: 44px;
-  margin-top: 22px;
-  margin-left: 10px;
+  /* actually he changed it using width and height to match the same as the temperature */
+  width: 88px;
+  height: 88px;
 }
 
 /* the temperature number */
 .weather-app-temperature {
   font-size: 88px;
   font-weight: bold;
+  line-height: 88px;
 }
 
 .weather-app-unit {
-  margin-top: 30px;
+  margin-top: 6px;
   font-size: 28px;
 }
 

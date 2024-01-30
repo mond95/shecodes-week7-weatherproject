@@ -17,6 +17,8 @@ function refreshWeather(response) {
   // can see the date looks strange - we have to parse it so google how to do this if forget - have to do new Date(VALUE) * 1000
   let date = new Date(response.data.time * 1000);
 
+  let iconElement = document.querySelector("#icon");
+
   // showing the city
   cityElement.innerHTML = response.data.city;
 
@@ -39,6 +41,9 @@ function refreshWeather(response) {
 
   // getting the windspeed
   windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+
+  //   moving the class to the image rather than the div
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon">`;
 }
 
 // FUNCTION TO FORMAT THE DATE
